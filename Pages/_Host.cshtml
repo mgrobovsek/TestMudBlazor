@@ -1,0 +1,16 @@
+﻿@page "/"
+@namespace testMudBlazor.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+<component type="typeof(App)" render-mode="ServerPrerendered" />
+
+
+@{ 
+    // fix The list of component records is not valid
+    // https://github.com/dotnet/aspnetcore/issues/18143#issuecomment-585961784
+    // https://www.gitmemory.com/issue/dotnet/aspnetcore/26174/705472525
+    HttpContext.Response.Headers["Cache-Control"] = "no-store";
+}
